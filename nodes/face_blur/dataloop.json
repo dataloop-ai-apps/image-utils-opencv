@@ -1,0 +1,92 @@
+{
+  "displayName": "[Image Utils] - OpenCV",
+  "name": "image-utils-open-cv",
+  "scope": "public",
+  "version": "0.0.1",
+  "attributes": {
+    "Provider": "Other",
+    "Category": "Pipeline",
+    "Pipeline Type": "Node",
+    "Node Type": "Image Utils"
+  },
+  "codebase": {
+    "type": "git",
+    "gitUrl": "https://github.com/dataloop-ai-apps/image-utils-opencv.git",
+    "gitTag": "0.0.1"
+  },
+  "components": {
+    "pipelineNodes": [
+      {
+        "invoke": {
+          "type": "function",
+          "namespace": "open-cv-face-blur.open-cv-face-blur.blur_faces"
+        },
+        "name": "face-blur",
+        "categories": ["images"],
+        "scope": "project"
+      }
+    ],
+    "modules": [
+      {
+        "name": "open-cv-face-blur",
+        "entryPoint": "face_blur/face_blur.py",
+        "className": "ServiceRunner",
+        "initInputs": [],
+        "functions": [
+          {
+            "name": "blur_faces",
+            "description": "Blur Faces using Open CV",
+            "input": [
+              {
+                "type": "Item",
+                "name": "item"
+              },
+              {
+                "type": "String",
+                "name": "dataset_id"
+              },
+              {
+                "type": "String",
+                "name": "remote_path"
+              }
+            ],
+            "output": [
+              {
+                "type": "Item",
+                "name": "item"
+              }
+            ],
+            "displayIcon": "edit",
+            "displayName": "Blur Faces"
+          }
+        ]
+      }
+    ],
+    "services": [
+      {
+        "name": "open-cv-face-blur",
+        "moduleName": "open-cv-face-blur",
+        "runtime": {
+          "podType": "regular-xs",
+          "runnerImage": "dataloopai/dtlpy-agent:cpu.py3.8.opencv4.7",
+          "numReplicas": 1,
+          "concurrency": 10,
+          "singleAgent": false,
+          "autoscaler": {
+            "type": "rabbitmq",
+            "minReplicas": 1,
+            "maxReplicas": 2,
+            "queueLength": 10
+          },
+          "preemptible": false
+        },
+        "executionTimeout": 172800,
+        "drainTime": 600,
+        "onReset": "failed",
+        "runExecutionAsProcess": false,
+        "maxAttempts": 3,
+        "operation": "none"
+      }
+    ]
+  }
+}
