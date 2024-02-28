@@ -18,8 +18,7 @@ class ServiceRunner(dl.BaseServiceRunner):
         node = context.node
         remote_path = node.metadata['customNodeConfig']['remote_path']
 
-        dataset_id = item.dataset.id if dataset_id is None else dataset_id
-        dataset = dl.datasets.get(dataset_id=dataset_id)
+        dataset = dl.datasets.get(dataset_id=item.dataset.id)
 
         remote_path = os.path.join(
             item.dir, remote_path) if remote_path is not None else item.dir
