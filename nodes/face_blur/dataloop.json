@@ -1,8 +1,8 @@
 {
-  "displayName": "[Image Utils] - OpenCV",
-  "name": "image-utils-open-cv",
+  "displayName": "Face Blur",
+  "name": "image-utils-faceblur-opencv",
   "scope": "public",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "App to blur faces in an image using OpenCV",
   "attributes": {
     "Provider": "Other",
@@ -13,7 +13,7 @@
   "codebase": {
     "type": "git",
     "gitUrl": "https://github.com/dataloop-ai-apps/image-utils-opencv.git",
-    "gitTag": "0.0.1"
+    "gitTag": "0.0.2"
   },
   "components": {
     "pipelineNodes": [
