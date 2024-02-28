@@ -16,7 +16,7 @@ class ServiceRunner(dl.BaseServiceRunner):
     def blur_faces(self, item: dl.Item, context: dl.Context):
         logger.info('Running service')
         node = context.node
-        remote_path = node.metadata['customNodeConfig']['remotePath']
+        remote_path = node.metadata['customNodeConfig']['remote_path']
 
         dataset_id = item.dataset.id if dataset_id is None else dataset_id
         dataset = dl.datasets.get(dataset_id=dataset_id)
