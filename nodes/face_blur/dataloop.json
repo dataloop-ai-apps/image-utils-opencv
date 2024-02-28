@@ -3,6 +3,7 @@
   "name": "image-utils-open-cv",
   "scope": "public",
   "version": "0.0.1",
+  "description": "App to blur faces in an image using OpenCV",
   "attributes": {
     "Provider": "Other",
     "Category": "Pipeline",

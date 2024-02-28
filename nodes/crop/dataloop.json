@@ -3,6 +3,7 @@
   "name": "image-utils-img-crop",
   "scope": "public",
   "version": "0.0.1",
+  "description": "App to create new images from box annotations in image",
   "attributes": {
     "Provider": "Other",
     "Category": "Pipeline",

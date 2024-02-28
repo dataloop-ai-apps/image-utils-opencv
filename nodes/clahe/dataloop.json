@@ -3,6 +3,7 @@
   "name": "image-utils-open-cv",
   "scope": "public",
   "version": "0.0.1",
+  "description": "App to apply Histogram Equalization to images using CLAHE algorithm from OpenCV",
   "attributes": {
     "Provider": "Other",
     "Category": "Pipeline",
