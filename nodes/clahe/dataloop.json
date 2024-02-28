@@ -23,7 +23,42 @@
         },
         "name": "clahe",
         "categories": ["images"],
-        "scope": "project"
+        "displayName": "Clahe",
+        "description": "Histogram Equalization using CLAHE",
+        "scope": "public",
+        "configuration": {
+          "fields": [
+            {
+              "name": "name",
+              "title": "Node Name",
+              "props": {
+                "title": true,
+                "type": "string",
+                "default": "Clahe",
+                "required": true,
+                "placeholder": "Insert node name"
+              },
+              "rules": [
+                {
+                  "type": "required",
+                  "effect": "error"
+                }
+              ],
+              "widget": "dl-input"
+            },
+            {
+              "name": "remote_path",
+              "title": "Remote Path",
+              "props": {
+                "title": true,
+                "type": "string",
+                "default": "",
+                "placeholder": "Insert remote path"
+              },
+              "widget": "dl-input"
+            }
+          ]
+        }
       }
     ],
     "modules": [
@@ -40,10 +75,6 @@
               {
                 "type": "Item",
                 "name": "item"
-              },
-              {
-                "type": "String",
-                "name": "remote_path"
               }
             ],
             "output": [
@@ -70,7 +101,7 @@
           "singleAgent": false,
           "autoscaler": {
             "type": "rabbitmq",
-            "minReplicas": 1,
+            "minReplicas": 0,
             "maxReplicas": 2,
             "queueLength": 10
           },

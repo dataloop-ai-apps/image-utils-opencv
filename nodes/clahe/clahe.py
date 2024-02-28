@@ -9,7 +9,9 @@ class ServiceRunner(dl.BaseServiceRunner):
         ...
 
     @staticmethod
-    def apply_clahe(item: dl.Item, remote_path):
+    def apply_clahe(item: dl.Item, context: dl.Context):
+        node = context.node
+        remote_path = node.metadata['customNodeConfig']['remotePath']
         # Load the image in grayscale
         local_path = os.path.join(os.getcwd(), f'clahe_{item.id}')
         os.makedirs(local_path, exist_ok=True)

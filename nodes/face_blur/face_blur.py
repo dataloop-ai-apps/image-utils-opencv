@@ -13,17 +13,21 @@ class ServiceRunner(dl.BaseServiceRunner):
             cv.data.haarcascades + 'haarcascade_frontalface_default.xml')
         logger.info('Service initialized')
 
-    def blur_faces(self, item: dl.Item, dataset_id=None, remote_path=None, blur_size=(11, 11)):
+    def blur_faces(self, item: dl.Item, context: dl.Context):
         logger.info('Running service')
-
-        # Determine the dataset and remote path
-        overwrite = dataset_id is None and remote_path is not None
+        node = context.node
+        remote_path = node.metadata['customNodeConfig']['remotePath']
 
         dataset_id = item.dataset.id if dataset_id is None else dataset_id
         dataset = dl.datasets.get(dataset_id=dataset_id)
 
         remote_path = os.path.join(
             item.dir, remote_path) if remote_path is not None else item.dir
+
+        if remote_path == item.dir:
+            overwrite = True
+        else:
+            overwrite = False
 
         # Download the image
         img = item.download(save_locally=False, to_array=True)
@@ -43,7 +47,7 @@ class ServiceRunner(dl.BaseServiceRunner):
         # Apply blur to the regions with faces
         for (x, y, w, h) in faces:
             roi = img[y:y + h, x:x + w]
-            blur[y:y + h, x:x + w] = cv.blur(roi, blur_size)
+            blur[y:y + h, x:x + w] = cv.blur(roi, (11, 11))
 
         # Determine the output file name and format
         extension = os.path.splitext(item.name)[1].lower()
