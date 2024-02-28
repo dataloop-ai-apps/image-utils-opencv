@@ -26,7 +26,7 @@
         "categories": ["images"],
         "displayName": "Face Blur",
         "description": "Blur faces in an image using OpenCV",
-        "scope": "public",
+        "scope": "node",
         "configuration": {
           "fields": [
             {
