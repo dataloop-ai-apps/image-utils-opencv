@@ -26,7 +26,7 @@
         "name": "crop_images",
         "displayName": "Crop Image",
         "description": "Crop Image to boxes",
-        "scope": "public",
+        "scope": "node",
         "configuration": {
           "fields": [
             {
