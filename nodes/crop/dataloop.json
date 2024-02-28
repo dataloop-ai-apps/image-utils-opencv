@@ -87,7 +87,7 @@
     "modules": [
       {
         "name": "image_utils_img_crop",
-        "entryPoint": "crop.py",
+        "entryPoint": "nodes/crop/crop.py",
         "className": "ServiceRunner",
         "initInputs": [],
         "functions": [

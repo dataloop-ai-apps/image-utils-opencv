@@ -65,7 +65,7 @@
     "modules": [
       {
         "name": "open-cv-clahe",
-        "entryPoint": "clahe/clahe.py",
+        "entryPoint": "nodes/clahe/clahe.py",
         "className": "ServiceRunner",
         "initInputs": [],
         "functions": [
