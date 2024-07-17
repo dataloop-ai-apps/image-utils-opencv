@@ -6,9 +6,10 @@
   "description": "App to create new images from box annotations in image",
   "attributes": {
     "Provider": "Other",
-    "Category": "Pipeline",
-    "Pipeline Type": "Node",
-    "Node Type": "Image Utils"
+    "Category": "Application",
+    "Application Type": [
+      "Pipeline Node"
+    ]
   },
   "codebase": {
     "type": "git",
@@ -22,7 +23,9 @@
           "type": "function",
           "namespace": "image-utils-img-crop.image_utils_img_crop.crop_images"
         },
-        "categories": ["image-utils"],
+        "categories": [
+          "image-utils"
+        ],
         "name": "crop_images",
         "displayName": "Crop Image",
         "description": "Crop Image to boxes",
@@ -55,7 +58,9 @@
           "type": "function",
           "namespace": "image-utils-img-crop.image_utils_img_crop.add_annotation_to_orig_image"
         },
-        "categories": ["image-utils"],
+        "categories": [
+          "image-utils"
+        ],
         "name": "add_annotation_to_orig_image",
         "displayName": "Crop to Origin",
         "description": "Update annotation to original image",

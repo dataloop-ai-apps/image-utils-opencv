@@ -6,9 +6,10 @@
   "description": "App to apply Histogram Equalization to images using CLAHE algorithm from OpenCV",
   "attributes": {
     "Provider": "Other",
-    "Category": "Pipeline",
-    "Pipeline Type": "Node",
-    "Node Type": "Image Utils"
+    "Category": "Application",
+    "Application Type": [
+      "Pipeline Node"
+    ]
   },
   "codebase": {
     "type": "git",
@@ -23,7 +24,9 @@
           "namespace": "open-cv-clahe.open-cv-clahe.apply_clahe"
         },
         "name": "clahe",
-        "categories": ["images"],
+        "categories": [
+          "images"
+        ],
         "displayName": "Clahe",
         "description": "Histogram Equalization using CLAHE",
         "scope": "node",
