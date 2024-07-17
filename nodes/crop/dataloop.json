@@ -2,7 +2,7 @@
   "displayName": "Crop box annotations to new images",
   "name": "image-utils-img-crop",
   "scope": "public",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "App to create new images from box annotations in image",
   "attributes": {
     "Provider": "Other",
@@ -14,7 +14,7 @@
   "codebase": {
     "type": "git",
     "gitUrl": "https://github.com/dataloop-ai-apps/image-utils-opencv.git",
-    "gitTag": "0.0.7"
+    "gitTag": "0.0.8"
   },
   "components": {
     "pipelineNodes": [
