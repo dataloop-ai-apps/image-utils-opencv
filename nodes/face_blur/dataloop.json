@@ -2,7 +2,7 @@
   "displayName": "Blur Faces",
   "name": "image-utils-faceblur-opencv",
   "scope": "public",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Detects faces in images using a pre-trained Haar Cascade classifier and applies a blur effect to the detected face regions, helping to anonymize individuals in the images.",
   "attributes": {
     "Provider": "Other",
@@ -13,7 +13,7 @@
   "codebase": {
     "type": "git",
     "gitUrl": "https://github.com/dataloop-ai-apps/image-utils-opencv.git",
-    "gitTag": "0.0.9"
+    "gitTag": "0.0.10"
   },
   "components": {
     "pipelineNodes": [
