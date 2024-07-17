@@ -7,9 +7,8 @@
   "attributes": {
     "Provider": "Other",
     "Category": "Application",
-    "Application Type": [
-      "Pipeline Node"
-    ]
+    "Media Type": ["Image"],
+    "Application Type": ["Pipeline Node"]
   },
   "codebase": {
     "type": "git",
@@ -24,9 +23,7 @@
           "namespace": "open-cv-face-blur.open-cv-face-blur.blur_faces"
         },
         "name": "face-blur",
-        "categories": [
-          "images"
-        ],
+        "categories": ["image-utils"],
         "displayName": "Face Blur",
         "description": "Blur faces in an image using OpenCV",
         "scope": "node",

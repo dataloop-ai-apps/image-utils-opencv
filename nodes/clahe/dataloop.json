@@ -7,9 +7,8 @@
   "attributes": {
     "Provider": "Other",
     "Category": "Application",
-    "Application Type": [
-      "Pipeline Node"
-    ]
+    "Media Type": ["Image"],
+    "Application Type": ["Pipeline Node"]
   },
   "codebase": {
     "type": "git",
@@ -24,9 +23,7 @@
           "namespace": "open-cv-clahe.open-cv-clahe.apply_clahe"
         },
         "name": "clahe",
-        "categories": [
-          "images"
-        ],
+        "categories": ["image-utils"],
         "displayName": "Clahe",
         "description": "Histogram Equalization using CLAHE",
         "scope": "node",
