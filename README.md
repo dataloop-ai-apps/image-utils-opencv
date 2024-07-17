@@ -1,41 +1,21 @@
-<p align="middle">
-  <img height="40mm" src="https://dataloop.ai/wp-content/uploads/2020/03/logo.svg">
-</p>
-
-## Pipeline library application for Google Vision Functions
-
----
-
-<p align="left">
-  
-  <img src="assets/pipeline_node.png">
-
-![versions](https://img.shields.io/pypi/pyversions/dtlpy.svg)
-
-</p>
+## Image Processing Pipeline Nodes using OpenCV
 
 ---
 
 ## Description
 
-Application for the Dataloop custom Pipeline nodes feature.
+This project demonstrates various image processing techniques using OpenCV and the Dataloop platform. It includes functionalities for contrast enhancement, image cropping, annotation management, and face blurring, each implemented as a node in the pipeline.
 
-The Application allows access to more pipeline nodes that can be used in the pipeline.
+## Nodes
 
-The application gives a variety of nodes created from OpenCV Functions, where every function is separate node. List of the nodes:
+#### 1. CLAHE (Contrast Limited Adaptive Histogram Equalization)
 
-- [clahe](clahe/clahe.py)
-- [crop](crop/crop.py)
-- [face bluring](face_blur/face_blur.py)
+Enhances the contrast of grayscale images using CLAHE, which is particularly useful for improving the visibility of features in images with varying illumination.
 
-## Installations
+#### 2. Crop Images
 
-- Clone the repository
+Crops images based on bounding box annotations and uploads the cropped images to the same dataset, preserving annotation details and metadata.
 
-- Publishing the app:
+#### 3. Blur Faces
 
-`dlp app publish --project-name "<PROJECT_NAME>"`
-
-- To install for a project:
-
-`dlp app install --dpk-id "<DPK ID>" --project-name "<PROJECT_NAME>"`
+Detects faces in images using a pre-trained Haar Cascade classifier and applies a blur effect to the detected face regions, helping to anonymize individuals in the images.

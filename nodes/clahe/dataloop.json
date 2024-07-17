@@ -1,9 +1,9 @@
 {
-  "displayName": "Histogram Equalization using CLAHE",
+  "displayName": "CLAHE (Contrast Limited Adaptive Histogram Equalization)",
   "name": "image-utils-clahe-opencv",
   "scope": "public",
   "version": "0.0.9",
-  "description": "App to apply Histogram Equalization to images using CLAHE algorithm from OpenCV",
+  "description": "Enhances the contrast of grayscale images using CLAHE, which is particularly useful for improving the visibility of features in images with varying illumination. ",
   "attributes": {
     "Provider": "Other",
     "Category": "Application",
@@ -24,8 +24,8 @@
         },
         "name": "clahe",
         "categories": ["image-utils"],
-        "displayName": "Clahe",
-        "description": "Histogram Equalization using CLAHE",
+        "displayName": "CLAHE (Contrast Limited Adaptive Histogram Equalization)",
+        "description": "Enhances the contrast of grayscale images using CLAHE, which is particularly useful for improving the visibility of features in images with varying illumination.",
         "scope": "node",
         "configuration": {
           "fields": [

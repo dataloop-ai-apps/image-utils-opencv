@@ -1,9 +1,9 @@
 {
-  "displayName": "Face Blur",
+  "displayName": "Blur Faces",
   "name": "image-utils-faceblur-opencv",
   "scope": "public",
   "version": "0.0.9",
-  "description": "App to blur faces in an image using OpenCV",
+  "description": "Detects faces in images using a pre-trained Haar Cascade classifier and applies a blur effect to the detected face regions, helping to anonymize individuals in the images.",
   "attributes": {
     "Provider": "Other",
     "Category": "Application",
@@ -24,8 +24,8 @@
         },
         "name": "face-blur",
         "categories": ["image-utils"],
-        "displayName": "Face Blur",
-        "description": "Blur faces in an image using OpenCV",
+        "displayName": "Blur Faces",
+        "description": "Detects faces in images using a pre-trained Haar Cascade classifier and applies a blur effect to the detected face regions, helping to anonymize individuals in the images.",
         "scope": "node",
         "configuration": {
           "fields": [

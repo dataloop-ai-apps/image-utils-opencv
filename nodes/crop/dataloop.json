@@ -1,9 +1,9 @@
 {
-  "displayName": "Crop box annotations to new images",
+  "displayName": "Crop Images",
   "name": "image-utils-img-crop",
   "scope": "public",
   "version": "0.0.9",
-  "description": "App to create new images from box annotations in image",
+  "description": "Crops images based on bounding box annotations and uploads the cropped images to the same dataset, preserving annotation details and metadata.",
   "attributes": {
     "Provider": "Other",
     "Category": "Application",
@@ -25,7 +25,7 @@
         "categories": ["image-utils"],
         "name": "crop_images",
         "displayName": "Crop Image",
-        "description": "Crop Image to boxes",
+        "description": "Crops images based on bounding box annotations and uploads the cropped images to the same dataset, preserving annotation details and metadata.",
         "scope": "node",
         "configuration": {
           "fields": [
