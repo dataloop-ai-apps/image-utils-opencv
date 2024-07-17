@@ -22,7 +22,9 @@
           "type": "function",
           "namespace": "image-utils-img-crop.image_utils_img_crop.crop_images"
         },
-        "categories": ["image-utils"],
+        "categories": [
+          "image-utils"
+        ],
         "name": "crop_images",
         "displayName": "Crop Image",
         "description": "Crop Image to boxes",
@@ -55,7 +57,9 @@
           "type": "function",
           "namespace": "image-utils-img-crop.image_utils_img_crop.add_annotation_to_orig_image"
         },
-        "categories": ["image-utils"],
+        "categories": [
+          "image-utils"
+        ],
         "name": "add_annotation_to_orig_image",
         "displayName": "Crop to Origin",
         "description": "Update annotation to original image",
@@ -105,7 +109,7 @@
                 "name": "items"
               }
             ],
-            "displayIcon": "divide"
+            "displayIcon": "icon-dl-crop"
           },
           {
             "name": "add_annotation_to_orig_image",
@@ -121,7 +125,7 @@
                 "name": "items"
               }
             ],
-            "displayIcon": "full-screen"
+            "displayIcon": "icon-dl-merge-to-origin"
           }
         ]
       }
