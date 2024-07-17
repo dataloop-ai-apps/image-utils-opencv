@@ -23,7 +23,9 @@
           "namespace": "open-cv-face-blur.open-cv-face-blur.blur_faces"
         },
         "name": "face-blur",
-        "categories": ["images"],
+        "categories": [
+          "images"
+        ],
         "displayName": "Face Blur",
         "description": "Blur faces in an image using OpenCV",
         "scope": "node",
@@ -84,7 +86,7 @@
                 "name": "item"
               }
             ],
-            "displayIcon": "edit",
+            "displayIcon": "icon-dl-blur",
             "displayName": "Blur Faces"
           }
         ]

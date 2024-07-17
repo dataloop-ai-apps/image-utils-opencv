@@ -23,7 +23,9 @@
           "namespace": "open-cv-clahe.open-cv-clahe.apply_clahe"
         },
         "name": "clahe",
-        "categories": ["images"],
+        "categories": [
+          "images"
+        ],
         "displayName": "Clahe",
         "description": "Histogram Equalization using CLAHE",
         "scope": "node",
@@ -84,7 +86,7 @@
                 "name": "item"
               }
             ],
-            "displayIcon": "item-outline",
+            "displayIcon": "icon-dl-clahe",
             "displayName": "Clahe"
           }
         ]
