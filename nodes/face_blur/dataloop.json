@@ -7,8 +7,13 @@
   "attributes": {
     "Provider": "Other",
     "Category": "Application",
-    "Media Type": ["Image"],
-    "Application Type": ["Pipeline Node"]
+    "Media Type": [
+      "Image"
+    ],
+    "Application Type": [
+      "Pipeline Node"
+    ],
+    "License": "Apache 2.0"
   },
   "codebase": {
     "type": "git",
@@ -23,7 +28,9 @@
           "namespace": "open-cv-face-blur.open-cv-face-blur.blur_faces"
         },
         "name": "face-blur",
-        "categories": ["image-utils"],
+        "categories": [
+          "image-utils"
+        ],
         "displayName": "Blur Faces",
         "description": "Detects faces in images using a pre-trained Haar Cascade classifier and applies a blur effect to the detected face regions, helping to anonymize individuals in the images.",
         "scope": "node",
