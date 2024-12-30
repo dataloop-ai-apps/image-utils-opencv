@@ -58,7 +58,7 @@ class ServiceRunner(dl.BaseServiceRunner):
         cv.imwrite(output_path, cv.cvtColor(blur, cv.COLOR_RGB2BGR))
 
         # Upload the image to the dataset
-        dataset.items.upload(local_path=output_path,
+        new_item = dataset.items.upload(local_path=output_path,
                              remote_path=remote_path, overwrite=overwrite)
 
-        return item
+        return new_item
