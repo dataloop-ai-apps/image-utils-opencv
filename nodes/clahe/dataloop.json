@@ -2,7 +2,7 @@
   "displayName": "CLAHE (Contrast Limited Adaptive Histogram Equalization)",
   "name": "image-utils-clahe-opencv",
   "scope": "public",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Enhances the contrast of grayscale images using CLAHE, which is particularly useful for improving the visibility of features in images with varying illumination. ",
   "attributes": {
     "Provider": "Other",
@@ -18,7 +18,7 @@
   "codebase": {
     "type": "git",
     "gitUrl": "https://github.com/dataloop-ai-apps/image-utils-opencv.git",
-    "gitTag": "0.0.10"
+    "gitTag": "0.0.11"
   },
   "components": {
     "pipelineNodes": [
