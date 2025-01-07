@@ -5,14 +5,10 @@
   "version": "0.0.11",
   "description": "Enhances the contrast of grayscale images using CLAHE, which is particularly useful for improving the visibility of features in images with varying illumination. ",
   "attributes": {
-    "Provider": "Other",
+    "Provider": "OpenCV",
     "Category": "Application",
-    "Media Type": [
-      "Image"
-    ],
-    "Application Type": [
-      "Pipeline Node"
-    ],
+    "Media Type": ["Image"],
+    "Application Type": ["Pipeline Node"],
     "License": "Apache 2.0"
   },
   "codebase": {
@@ -28,9 +24,7 @@
           "namespace": "open-cv-clahe.open-cv-clahe.apply_clahe"
         },
         "name": "clahe",
-        "categories": [
-          "image-utils"
-        ],
+        "categories": ["image-utils"],
         "displayName": "CLAHE (Contrast Limited Adaptive Histogram Equalization)",
         "description": "Enhances the contrast of grayscale images using CLAHE, which is particularly useful for improving the visibility of features in images with varying illumination.",
         "scope": "node",
