@@ -41,6 +41,9 @@ class ServiceRunner(dl.BaseServiceRunner):
         pool = ThreadPool(processes=6)
         async_results = list()
 
+        if "user" not in item.metadata:
+            item.metadata["user"] = {}
+                
         for annotation in annotations:
 
             crop = image[
@@ -52,7 +55,6 @@ class ServiceRunner(dl.BaseServiceRunner):
             attributes = annotation.attributes
             if annotation.metadata.get("system", {}).get("attributes", False):
                 attributes = annotation.metadata["system"]["attributes"]
-
             async_results.append(
                 pool.apply_async(
                     item.dataset.items.upload,
@@ -61,7 +63,7 @@ class ServiceRunner(dl.BaseServiceRunner):
                         "remote_path": remote_path,
                         "overwrite": True,
                         "item_metadata": {
-                            "system": {
+                            "user": {
                                 "parentItemId": item.id,
                                 "originalAnnotationId": annotation.id,
                                 "originalAnnotationType": annotation.type,
