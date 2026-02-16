@@ -56,7 +56,7 @@
         "modules": [
             {
                 "name": "exif-extractor-module",
-                "entryPoint": "main.py",
+                "entryPoint": "nodes/exif/main.py",
                 "className": "ServiceRunner",
                 "initInputs": [],
                 "functions": [
