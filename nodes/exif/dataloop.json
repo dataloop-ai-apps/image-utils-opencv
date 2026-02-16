@@ -101,9 +101,6 @@
                     },
                     "preemptible": true
                 },
-                "versions": {
-                    "dtlpy": "1.115.22"
-                },
                 "executionTimeout": 15,
                 "drainTime": 600
             }
