@@ -2,7 +2,7 @@
   "displayName": "Crop Images",
   "name": "image-utils-img-crop",
   "scope": "public",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Crops images based on bounding box annotations and uploads the cropped images to the same dataset, preserving annotation details and metadata.",
   "attributes": {
     "Provider": "OpenCV",
@@ -15,7 +15,7 @@
   "codebase": {
     "type": "git",
     "gitUrl": "https://github.com/dataloop-ai-apps/image-utils-opencv.git",
-    "gitTag": "0.0.13"
+    "gitTag": "0.0.14"
   },
   "components": {
     "pipelineNodes": [
