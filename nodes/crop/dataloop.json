@@ -6,6 +6,7 @@
   "description": "Crops images based on bounding box annotations and uploads the cropped images to the same dataset, preserving annotation details and metadata.",
   "attributes": {
     "Provider": "OpenCV",
+    "Deployed By": "Dataloop",
     "Category": "Application",
     "Media Type": ["Image"],
     "Application Type": ["Pipeline Node"],
