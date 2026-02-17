@@ -7,6 +7,7 @@
   "attributes": {
     "Provider": "OpenCV",
     "Category": "Application",
+    "Deployed By": "Dataloop",
     "Media Type": ["Image"],
     "Application Type": ["Pipeline Node"],
     "License": "Apache 2.0"

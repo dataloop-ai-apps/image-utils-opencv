@@ -6,8 +6,8 @@
     "scope": "public",
     "attributes": {
         "Category": "Application",
-        "Provider": "Dell",
-        "Deployed By": "Dell",
+        "Provider": "Dataloop",
+        "Deployed By": "Dataloop",
         "License": "Apache 2.0",
         "Application Type": ["Pipeline Node"],
         "Media Type": ["Image"]
@@ -25,7 +25,7 @@
                     "namespace": "exif-extractor-service.exif-extractor-module.run"
                 },
                 "name": "Exif Extractor",
-                "categories": ["Dell"],
+                "categories": ["image-utils"],
                 "displayName": "Exif Extractor",
                 "description": "Extracts EXIF data from images",
                 "scope": "project",
@@ -62,7 +62,7 @@
                 "functions": [
                     {
                         "name": "run",
-                        "displayIcon": "icon-dl-brand-dell",
+                        "displayIcon": "icon-dl-function",
                         "input": [
                             {
                                 "name": "item",
