@@ -1,0 +1,274 @@
+{
+  "name": "image-denoiser",
+  "displayName": "OpenCV Image Denoiser",
+  "version": "1.0.15",
+  "description": "Removes noise from images using OpenCV fastNlMeansDenoising or bilateral filters.",
+  "components": {
+    "pipelineNodes": [
+      {
+        "invoke": {
+          "type": "function",
+          "namespace": "image-denoiser.denoise_module.denoise"
+        },
+        "name": "denoise",
+        "categories": ["image-utils"],
+        "displayName": "Denoise Image",
+        "description": "Removes noise from images using OpenCV fastNlMeansDenoising or bilateral filters.",
+        "scope": "node",
+        "configuration": {
+          "fields": [
+            {
+              "name": "filter_type",
+              "title": "Filter Type",
+              "props": {
+                "type": "string",
+                "default": "nlmeans",
+                "required": true,
+                "options": [
+                  {"value": "nlmeans", "label":"Non-local Means"},
+                  {"value": "bilateral", "label":"Bilateral"},
+                  {"value": "median", "label":"Median"}
+                ]
+              },
+              "rules": [
+                {
+                  "type": "required",
+                  "effect": "error"
+                }
+              ],
+              "widget": "dl-select"
+            },
+            {
+              "name": "h",
+              "title": "h",
+              "props": {
+                "type": "number",
+                "default": 30,
+                "required": true,
+                "title": true,
+                "redAsterisk": true
+              },
+              "rules": [
+                {
+                  "type": "required",
+                  "effect": "error"
+                }
+              ],
+              "dependsOn": {
+                "field": "filter_type",
+                "value": "nlmeans",
+                "operator": "equals"
+              },
+              "widget": "dl-input"
+            },
+            {
+              "name": "hColor",
+              "title": "hColor",
+              "props": {
+                "type": "number",
+                "default": 30,
+                "required": true,
+                "title": true,
+                "redAsterisk": true
+              },
+              "rules": [
+                {
+                  "type": "required",
+                  "effect": "error"
+                }
+              ],
+              "dependsOn": {
+                "field": "filter_type",
+                "value": "nlmeans",
+                "operator": "equals"
+              },
+              "widget": "dl-input"
+            },
+            {
+              "name": "templateWindowSize",
+              "title": "templateWindowSize",
+              "props": {
+                "type": "number",
+                "default": 7,
+                "required": true,
+                "title": true,
+                "redAsterisk": true
+              },
+              "rules": [
+                {
+                  "type": "required",
+                  "effect": "error"
+                }
+              ],
+              "dependsOn": {
+                "field": "filter_type",
+                "value": "nlmeans",
+                "operator": "equals"
+              },
+              "widget": "dl-input"
+            },
+            {
+              "name": "searchWindowSize",
+              "title": "searchWindowSize",
+              "props": {
+                "type": "number",
+                "default": 21,
+                "required": true,
+                "title": true,
+                "redAsterisk": true
+              },
+              "rules": [
+                {
+                  "type": "required",
+                  "effect": "error"
+                }
+              ],
+              "dependsOn": {
+                "field": "filter_type",
+                "value": "nlmeans",
+                "operator": "equals"
+              },
+              "widget": "dl-input"
+            },
+            {
+              "name": "d",
+              "title": "d",
+              "props": {
+                "type": "number",
+                "default": 9,
+                "required": true,
+                "title": true,
+                "redAsterisk": true
+              },
+              "rules": [
+                {
+                  "type": "required",
+                  "effect": "error"
+                }
+              ],
+              "dependsOn": {
+                "field": "filter_type",
+                "value": "bilateral",
+                "operator": "equals"
+              },
+              "widget": "dl-input"
+            },
+            {
+              "name": "sigmaColor",
+              "title": "sigmaColor",
+              "props": {
+                "type": "number",
+                "default": 75,
+                "required": true,
+                "title": true,
+                "redAsterisk": true
+              },
+              "rules": [
+                {
+                  "type": "required",
+                  "effect": "error"
+                }
+              ],
+              "dependsOn": {
+                "field": "filter_type",
+                "value": "bilateral",
+                "operator": "equals"
+              },
+              "widget": "dl-input"
+            },
+            {
+              "name": "sigmaSpace",
+              "title": "sigmaSpace",
+              "props": {
+                "type": "number",
+                "default": 75,
+                "required": true,
+                "title": true,
+                "redAsterisk": true
+              },
+              "rules": [
+                {
+                  "type": "required",
+                  "effect": "error"
+                }
+              ],
+              "dependsOn": {
+                "field": "filter_type",
+                "value": "bilateral",
+                "operator": "equals"
+              },
+              "widget": "dl-input"
+            },
+            {
+              "name": "kSize",
+              "title": "kSize",
+              "props": {
+                "type": "number",
+                "default": 5,
+                "required": true,
+                "title": true,
+                "redAsterisk": true
+              },
+              "rules": [
+                {
+                  "type": "required",
+                  "effect": "error"
+                }
+              ],
+              "dependsOn": {
+                "field": "filter_type",
+                "value": "median",
+                "operator": "equals"
+              },
+              "widget": "dl-input"
+            }
+          ]
+        }
+      }
+    ],
+    "modules": [
+      {
+        "name": "denoise_module",
+        "entryPoint": "denoise.py",
+        "className": "ServiceRunner",
+        "initInputs": [],
+        "functions": [
+          {
+            "name": "denoise",
+            "description": "Denoise image using OpenCV",
+            "input": [
+              {
+                "type": "Item",
+                "name": "item"
+              }
+            ],
+            "output": [
+              {
+                "type": "Item",
+                "name": "item"
+              }
+            ],
+            "displayName": "Denoise"
+          }
+        ]
+      }
+    ],
+    "services": [
+      {
+        "name": "image-denoiser",
+        "moduleName": "denoise_module",
+        "runtime": {
+          "podType": "regular-xs",
+          "concurrency": 10,
+          "runnerImage": "docker.io/dataloopai/dtlpy-agent:cpu.py3.10.opencv",
+          "autoscaler": {
+            "type": "rabbitmq",
+            "minReplicas": 0,
+            "maxReplicas": 2,
+            "queueLength": 100
+          }
+        }
+      }
+    ]
+  }
+}

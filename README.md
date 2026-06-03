@@ -19,3 +19,7 @@ Crops images based on bounding box annotations and uploads the cropped images to
 #### 3. Blur Faces
 
 Detects faces in images using a pre-trained Haar Cascade classifier and applies a blur effect to the detected face regions, helping to anonymize individuals in the images.
+
+#### 4. Denoise Images
+
+Applies denoising filters on images to reduce noise while preserving important details.
