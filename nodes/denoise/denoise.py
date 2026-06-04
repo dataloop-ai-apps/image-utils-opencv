@@ -12,9 +12,10 @@ class ServiceRunner(dl.BaseServiceRunner):
         node = context.node
         custom_config = node.metadata['customNodeConfig']
         filter_type = custom_config['filter_type']
-        print(f"Starting denoising for item: {item.id} with filter: {filter_type}")
-        logger.info(f"Using filter: {filter_type}")
-        print(f"Using filter: {filter_type} - print")
+        
+        if not item.mimetype.startswith('image'):
+            raise ValueError(f"Item {item.id} is not an image (mimetype: {item.mimetype}). This node only supports image items.")
+        
         buffer = item.download(save_locally=False)
         img_array = np.asarray(bytearray(buffer.read()), dtype=np.uint8)
         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)

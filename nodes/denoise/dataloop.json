@@ -1,7 +1,7 @@
 {
   "name": "image-denoiser",
   "displayName": "Image Denoiser",
-  "version": "1.0.33",
+  "version": "0.0.16",
   "description": "Removes noise from images using OpenCV fastNlMeansDenoising, bilateral or median filters.",
   "attributes": {
     "Provider": "OpenCV",
@@ -21,7 +21,7 @@
       {
         "invoke": {
           "type": "function",
-          "namespace": "image-denoiser.denoise_module.denoise"
+          "namespace": "image-denoiser_service.denoise_module.denoise"
         },
         "name": "denoise",
         "categories": ["image-utils"],
@@ -287,7 +287,7 @@
     ],
     "services": [
       {
-        "name": "image-denoiser",
+        "name": "image-denoiser_service",
         "moduleName": "denoise_module",
         "runtime": {
           "podType": "regular-xs",
