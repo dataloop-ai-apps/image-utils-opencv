@@ -10,7 +10,11 @@ class ServiceRunner(dl.BaseServiceRunner):
     def denoise(self, item: dl.Item, context: dl.Context) -> dl.Item:
         
         node = context.node
-        filter_type = node.metadata['customNodeConfig']['filter_type']
+        custom_config = node.metadata['customNodeConfig']
+        filter_type = custom_config['filter_type']
+        print(f"Starting denoising for item: {item.id} with filter: {filter_type}")
+        logger.info(f"Using filter: {filter_type}")
+        print(f"Using filter: {filter_type} - print")
         buffer = item.download(save_locally=False)
         img_array = np.asarray(bytearray(buffer.read()), dtype=np.uint8)
         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
@@ -19,11 +23,19 @@ class ServiceRunner(dl.BaseServiceRunner):
             raise ValueError(f"Failed to decode image from item {item.id}")
 
         if filter_type == 'nlmeans':
-            denoised_img = cv2.fastNlMeansDenoisingColored(img, None, 30, 30, 7, 21)
+            h = custom_config['h']
+            hColor = custom_config['hColor']
+            templateWindowSize = custom_config['templateWindowSize']
+            searchWindowSize = custom_config['searchWindowSize']
+            denoised_img = cv2.fastNlMeansDenoisingColored(img, None, h, hColor, templateWindowSize, searchWindowSize)
         elif filter_type == 'bilateral':
-            denoised_img = cv2.bilateralFilter(img, 9, 75, 75)
+            d = custom_config['d']
+            sigmaColor = custom_config['sigmaColor']
+            sigmaSpace = custom_config['sigmaSpace']
+            denoised_img = cv2.bilateralFilter(img, d, sigmaColor, sigmaSpace)
         elif filter_type == 'median':
-            denoised_img = cv2.medianBlur(img, 5)
+            kSize = custom_config['kSize']
+            denoised_img = cv2.medianBlur(img, kSize)
         else:
             raise ValueError(f"Unsupported filter: {filter_type}. Choose 'nlmeans', 'bilateral', or 'median'.")
 

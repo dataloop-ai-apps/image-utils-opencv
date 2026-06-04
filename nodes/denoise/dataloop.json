@@ -261,7 +261,7 @@
     "modules": [
       {
         "name": "denoise_module",
-        "entryPoint": "denoise.py",
+        "entryPoint": "nodes/denoise/denoise.py",
         "className": "ServiceRunner",
         "initInputs": [],
         "functions": [
@@ -301,8 +301,6 @@
             "queueLength": 10
           }
         },
-        "executionTimeout": 172800,
-        "drainTime": 600,
         "onReset": "failed",
         "runExecutionAsProcess": false,
         "maxAttempts": 3,
