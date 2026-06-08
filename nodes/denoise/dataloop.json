@@ -1,0 +1,311 @@
+{
+  "name": "image-denoiser",
+  "displayName": "Image Denoiser",
+  "version": "0.0.16",
+  "description": "Removes noise from images using OpenCV fastNlMeansDenoising, bilateral or median filters.",
+  "attributes": {
+    "Provider": "OpenCV",
+    "Category": "Application",
+    "Deployed By": "Dataloop",
+    "Media Type": ["Image"],
+    "Application Type": ["Pipeline Node"],
+    "License": "Apache 2.0"
+  },
+  "codebase": {
+    "type": "git",
+    "gitUrl": "https://github.com/dataloop-ai-apps/image-utils-opencv.git",
+    "gitTag": "0.0.16"
+  },
+  "components": {
+    "pipelineNodes": [
+      {
+        "invoke": {
+          "type": "function",
+          "namespace": "image_denoiser_service.denoise_module.denoise"
+        },
+        "name": "denoise",
+        "categories": ["image-utils"],
+        "displayName": "Denoise Image",
+        "description": "Removes noise from images using OpenCV fastNlMeansDenoising, bilateral or median filters.",
+        "scope": "node",
+        "configuration": {
+          "fields": [
+            {
+              "name": "filter_type",
+              "title": "Filter Type",
+              "props": {
+                "type": "string",
+                "default": "nlmeans",
+                "required": true,
+                "options": [
+                  {"value": "nlmeans", "label":"Non-local Means"},
+                  {"value": "bilateral", "label":"Bilateral"},
+                  {"value": "median", "label":"Median"}
+                ]
+              },
+              "rules": [
+                {
+                  "type": "required",
+                  "effect": "error"
+                }
+              ],
+              "widget": "dl-select"
+            },
+            {
+              "name": "h",
+              "title": "Denoising Strength (Brightness)",
+              "tooltip": "Controls how strongly noise is removed from brightness/details. Higher values remove more noise but may blur fine details",
+              "props": {
+                "type": "number",
+                "default": 30,
+                "required": true,
+                "title": true,
+                "redAsterisk": true
+              },
+              "rules": [
+                {
+                  "type": "required",
+                  "effect": "error"
+                }
+              ],
+              "dependsOn": {
+                "field": "filter_type",
+                "value": "nlmeans",
+                "operator": "equals"
+              },
+              "widget": "dl-input"
+            },
+            {
+              "name": "h_color",
+              "title": "Denoising Strength (Color)",
+              "tooltip": "Controls how strongly color noise is reduced. Higher values smooth colors more but can reduce color accuracy",
+              "props": {
+                "type": "number",
+                "default": 30,
+                "required": true,
+                "title": true,
+                "redAsterisk": true
+              },
+              "rules": [
+                {
+                  "type": "required",
+                  "effect": "error"
+                }
+              ],
+              "dependsOn": {
+                "field": "filter_type",
+                "value": "nlmeans",
+                "operator": "equals"
+              },
+              "widget": "dl-input"
+            },
+            {
+              "name": "template_window_size",
+              "title": "Patch Size",
+              "tooltip": "Size of the small pixel block used for comparing image areas. Larger values can improve noise reduction but may blur textures. Must be an odd number",
+              "props": {
+                "type": "number",
+                "min": 3,
+                "max": 101,
+                "step": 2,
+                "default": 7,
+                "required": true,
+                "title": true,
+                "redAsterisk": true
+              },
+              "rules": [
+                {
+                  "type": "required",
+                  "effect": "error"
+                }
+              ],
+              "dependsOn": {
+                "field": "filter_type",
+                "value": "nlmeans",
+                "operator": "equals"
+              },
+              "widget": "dl-slider"
+            },
+            {
+              "name": "search_window_size",
+              "title": "Search Area Size",
+              "tooltip": "Size of the region used to find similar patches for denoising. Larger values improve quality but slow down processing. Must be an odd numberr",
+              "props": {
+                "type": "number",
+                "default": 21,
+                "required": true,
+                "title": true,
+                "redAsterisk": true,
+                "min": 3,
+                "max": 101,
+                "step": 2
+              },
+              "rules": [
+                {
+                  "type": "required",
+                  "effect": "error"
+                }
+              ],
+              "dependsOn": {
+                "field": "filter_type",
+                "value": "nlmeans",
+                "operator": "equals"
+              },
+              "widget": "dl-slider"
+            },
+            {
+              "name": "d",
+              "title": "Neighborhood Size",
+              "tooltip": "Defines how many nearby pixels are used for smoothing. Larger values produce stronger smoothing but increase processing time",
+              "props": {
+                "type": "number",
+                "default": 9,
+                "required": true,
+                "title": true,
+                "redAsterisk": true,
+                "min": 1
+              },
+              "rules": [
+                {
+                  "type": "required",
+                  "effect": "error"
+                }
+              ],
+              "dependsOn": {
+                "field": "filter_type",
+                "value": "bilateral",
+                "operator": "equals"
+              },
+              "widget": "dl-input"
+            },
+            {
+              "name": "sigma_color",
+              "title": "Color Sensitivity",
+              "tooltip": "Determines how similar colors must be to be smoothed together. Higher values blend more colors, reducing noise but also detail",
+              "props": {
+                "type": "number",
+                "default": 75,
+                "required": true,
+                "title": true,
+                "redAsterisk": true
+              },
+              "rules": [
+                {
+                  "type": "required",
+                  "effect": "error"
+                }
+              ],
+              "dependsOn": {
+                "field": "filter_type",
+                "value": "bilateral",
+                "operator": "equals"
+              },
+              "widget": "dl-input"
+            },
+            {
+              "name": "sigma_space",
+              "title": "Spatial Influence",
+              "tooltip": "Controls how much nearby pixels affect each other based on distance. Larger values result in smoother images over larger areas",
+              "props": {
+                "type": "number",
+                "default": 75,
+                "required": true,
+                "title": true,
+                "redAsterisk": true,
+                "min": 1
+              },
+              "rules": [
+                {
+                  "type": "required",
+                  "effect": "error"
+                }
+              ],
+              "dependsOn": {
+                "field": "filter_type",
+                "value": "bilateral",
+                "operator": "equals"
+              },
+              "widget": "dl-input"
+            },
+            {
+              "name": "k_size",
+              "title": "Kernel Size",
+              "tooltip": "Size of the pixel neighborhood used to remove noise. Larger values remove more noise but can blur edges. Must be an odd number",
+              "props": {
+                "type": "number",
+                "default": 5,
+                "required": true,
+                "title": true,
+                "redAsterisk": true,
+                "min": 3,
+                "max": 101,
+                "step": 2
+              },
+              "rules": [
+                {
+                  "type": "required",
+                  "effect": "error"
+                }
+              ],
+              "dependsOn": {
+                "field": "filter_type",
+                "value": "median",
+                "operator": "equals"
+              },
+              "widget": "dl-slider"
+            }
+          ]
+        }
+      }
+    ],
+    "modules": [
+      {
+        "name": "denoise_module",
+        "entryPoint": "nodes/denoise/denoise.py",
+        "className": "ServiceRunner",
+        "initInputs": [],
+        "functions": [
+          {
+            "name": "denoise",
+            "description": "Denoise image using OpenCV",
+            "input": [
+              {
+                "type": "Item",
+                "name": "item"
+              }
+            ],
+            "output": [
+              {
+                "type": "Item",
+                "name": "item"
+              }
+            ],
+            "displayName": "Denoise"
+          }
+        ]
+      }
+    ],
+    "services": [
+      {
+        "name": "image_denoiser_service",
+        "moduleName": "denoise_module",
+        "runtime": {
+          "podType": "regular-xs",
+          "runnerImage": "hub.dataloop.ai/dtlpy-runner-images/cpu:python3.12_opencv",
+          "numReplicas": 1,
+          "concurrency": 10,
+          "autoscaler": {
+            "type": "rabbitmq",
+            "minReplicas": 0,
+            "maxReplicas": 2,
+            "queueLength": 10
+          }
+        },
+        "onReset": "failed",
+        "runExecutionAsProcess": false,
+        "maxAttempts": 3,
+        "operation": "none"
+      }
+    ]
+  }
+}
