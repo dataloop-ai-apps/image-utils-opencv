@@ -76,7 +76,7 @@
               "widget": "dl-input"
             },
             {
-              "name": "hColor",
+              "name": "h_color",
               "title": "Denoising Strength (Color)",
               "tooltip": "Controls how strongly color noise is reduced. Higher values smooth colors more but can reduce color accuracy",
               "props": {
@@ -100,7 +100,7 @@
               "widget": "dl-input"
             },
             {
-              "name": "templateWindowSize",
+              "name": "template_window_size",
               "title": "Patch Size",
               "tooltip": "Size of the small pixel block used for comparing image areas. Larger values can improve noise reduction but may blur textures. Must be an odd number",
               "props": {
@@ -127,7 +127,7 @@
               "widget": "dl-slider"
             },
             {
-              "name": "searchWindowSize",
+              "name": "search_window_size",
               "title": "Search Area Size",
               "tooltip": "Size of the region used to find similar patches for denoising. Larger values improve quality but slow down processing. Must be an odd numberr",
               "props": {
@@ -179,7 +179,7 @@
               "widget": "dl-input"
             },
             {
-              "name": "sigmaColor",
+              "name": "sigma_color",
               "title": "Color Sensitivity",
               "tooltip": "Determines how similar colors must be to be smoothed together. Higher values blend more colors, reducing noise but also detail",
               "props": {
@@ -203,7 +203,7 @@
               "widget": "dl-input"
             },
             {
-              "name": "sigmaSpace",
+              "name": "sigma_space",
               "title": " Spatial Influence",
               "tooltip": "Controls how much nearby pixels affect each other based on distance. Larger values result in smoother images over larger areas",
               "props": {
@@ -228,7 +228,7 @@
               "widget": "dl-input"
             },
             {
-              "name": "kSize",
+              "name": "k_size",
               "title": "Kernel Size",
               "tooltip": "Size of the pixel neighborhood used to remove noise. Larger values remove more noise but can blur edges. Must be an odd number",
               "props": {

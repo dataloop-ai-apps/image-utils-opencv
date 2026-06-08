@@ -10,6 +10,8 @@ class ServiceRunner(dl.BaseServiceRunner):
     def denoise(self, item: dl.Item, context: dl.Context) -> dl.Item:
         
         node = context.node
+        dataset = item.dataset
+        metadata = dict()
         custom_config = node.metadata['customNodeConfig']
         filter_type = custom_config['filter_type']
         
@@ -25,18 +27,26 @@ class ServiceRunner(dl.BaseServiceRunner):
 
         if filter_type == 'nlmeans':
             h = custom_config['h']
-            hColor = custom_config['hColor']
-            templateWindowSize = custom_config['templateWindowSize']
-            searchWindowSize = custom_config['searchWindowSize']
-            denoised_img = cv2.fastNlMeansDenoisingColored(img, None, h, hColor, templateWindowSize, searchWindowSize)
+            h_color = custom_config['h_color']
+            template_window_size = custom_config['template_window_size']
+            search_window_size = custom_config['search_window_size']
+            metadata['h'] = h
+            metadata['h_color'] = h_color
+            metadata['template_window_size'] = template_window_size
+            metadata['search_window_size'] = search_window_size
+            denoised_img = cv2.fastNlMeansDenoisingColored(img, None, h, h_color, template_window_size, search_window_size)
         elif filter_type == 'bilateral':
             d = custom_config['d']
-            sigmaColor = custom_config['sigmaColor']
-            sigmaSpace = custom_config['sigmaSpace']
-            denoised_img = cv2.bilateralFilter(img, d, sigmaColor, sigmaSpace)
+            sigma_color = custom_config['sigma_color']
+            sigma_space = custom_config['sigma_space']
+            metadata['d'] = d
+            metadata['sigma_color'] = sigma_color
+            metadata['sigma_space'] = sigma_space
+            denoised_img = cv2.bilateralFilter(img, d, sigma_color, sigma_space)
         elif filter_type == 'median':
-            kSize = custom_config['kSize']
-            denoised_img = cv2.medianBlur(img, kSize)
+            k_size = custom_config['k_size']
+            metadata['k_size'] = k_size
+            denoised_img = cv2.medianBlur(img, k_size)
         else:
             raise ValueError(f"Unsupported filter: {filter_type}. Choose 'nlmeans', 'bilateral', or 'median'.")
 
@@ -47,33 +57,11 @@ class ServiceRunner(dl.BaseServiceRunner):
         b_io = io.BytesIO(encoded_img.tobytes())
         b_io.name = f"denoised_{filter_type}_{item.name}"
 
-        dataset = item.dataset
-
-        metadata = {'filter_type': filter_type}
- 
-        if filter_type == 'nlmeans':
-            metadata.update({
-                'denoising_strength_brightness': custom_config['h'],
-                'denoising_strength_color': custom_config['hColor'],
-                'patch_size': custom_config['templateWindowSize'],
-                'search_area_size': custom_config['searchWindowSize'],
-            })
-        elif filter_type == 'bilateral':
-            metadata.update({
-                'neighborhood_size': custom_config['d'],
-                'color_sensitivity': custom_config['sigmaColor'],
-                'spatial_influence': custom_config['sigmaSpace'],
-            })
-        elif filter_type == 'median':
-            metadata.update({
-                'kernel_size': custom_config['kSize'],
-            })
-
         new_item = dataset.items.upload(
             local_path=b_io, 
             remote_path=item.dir,
-            item_metadata={'customNodeConfig': metadata}
+            item_metadata={'denoise_metadata': metadata}
         )
-
-        logger.info(f"Successfully uploaded denoised item: {new_item.id}")
+        
+        logger.info(f"Successfully uploaded denoised item: {new_item.id} using {filter_type} filter")
         return new_item
