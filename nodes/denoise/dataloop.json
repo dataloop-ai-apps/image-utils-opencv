@@ -1,7 +1,7 @@
 {
   "name": "image-denoiser",
   "displayName": "Image Denoiser",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "Removes noise from images using OpenCV fastNlMeansDenoising, bilateral or median filters.",
   "attributes": {
     "Provider": "OpenCV",
@@ -14,7 +14,7 @@
   "codebase": {
     "type": "git",
     "gitUrl": "https://github.com/dataloop-ai-apps/image-utils-opencv.git",
-    "gitTag": "0.0.16"
+    "gitTag": "0.0.17"
   },
   "components": {
     "pipelineNodes": [
