@@ -48,10 +48,32 @@ class ServiceRunner(dl.BaseServiceRunner):
         b_io.name = f"denoised_{filter_type}_{item.name}"
 
         dataset = item.dataset
+
+        metadata = {'filter_type': filter_type}
+ 
+        if filter_type == 'nlmeans':
+            metadata.update({
+                'denoising_strength_brightness': custom_config['h'],
+                'denoising_strength_color': custom_config['hColor'],
+                'patch_size': custom_config['templateWindowSize'],
+                'search_area_size': custom_config['searchWindowSize'],
+            })
+        elif filter_type == 'bilateral':
+            metadata.update({
+                'neighborhood_size': custom_config['d'],
+                'color_sensitivity': custom_config['sigmaColor'],
+                'spatial_influence': custom_config['sigmaSpace'],
+            })
+        elif filter_type == 'median':
+            metadata.update({
+                'kernel_size': custom_config['kSize'],
+            })
+
         new_item = dataset.items.upload(
             local_path=b_io, 
-            remote_path=item.dir
+            remote_path=item.dir,
+            item_metadata={'customNodeConfig': metadata}
         )
-        
+
         logger.info(f"Successfully uploaded denoised item: {new_item.id}")
         return new_item
