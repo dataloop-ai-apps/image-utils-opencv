@@ -204,7 +204,7 @@
             },
             {
               "name": "sigma_space",
-              "title": " Spatial Influence",
+              "title": "Spatial Influence",
               "tooltip": "Controls how much nearby pixels affect each other based on distance. Larger values result in smoother images over larger areas",
               "props": {
                 "type": "number",

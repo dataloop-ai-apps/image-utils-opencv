@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 import io
 import logging
+import os
 
 logger = logging.getLogger(__name__)
 
@@ -11,6 +12,7 @@ class ServiceRunner(dl.BaseServiceRunner):
         
         node = context.node
         dataset = item.dataset
+        file_format = os.path.splitext(item.filename)[1].lower()
         metadata = dict()
         custom_config = node.metadata['customNodeConfig']
         filter_type = custom_config['filter_type']
@@ -30,27 +32,27 @@ class ServiceRunner(dl.BaseServiceRunner):
             h_color = custom_config['h_color']
             template_window_size = custom_config['template_window_size']
             search_window_size = custom_config['search_window_size']
-            metadata['h'] = h
-            metadata['h_color'] = h_color
-            metadata['template_window_size'] = template_window_size
-            metadata['search_window_size'] = search_window_size
+            metadata['denoising_strength_brightness'] = h
+            metadata['denoising_strength_color'] = h_color
+            metadata['patch_size'] = template_window_size
+            metadata['search_area_size'] = search_window_size
             denoised_img = cv2.fastNlMeansDenoisingColored(img, None, h, h_color, template_window_size, search_window_size)
         elif filter_type == 'bilateral':
             d = custom_config['d']
             sigma_color = custom_config['sigma_color']
             sigma_space = custom_config['sigma_space']
-            metadata['d'] = d
-            metadata['sigma_color'] = sigma_color
-            metadata['sigma_space'] = sigma_space
+            metadata['neighborhood_size'] = d
+            metadata['color_sensitivity'] = sigma_color
+            metadata['spatial_influence'] = sigma_space
             denoised_img = cv2.bilateralFilter(img, d, sigma_color, sigma_space)
         elif filter_type == 'median':
             k_size = custom_config['k_size']
-            metadata['k_size'] = k_size
+            metadata['kernel_size'] = k_size
             denoised_img = cv2.medianBlur(img, k_size)
         else:
             raise ValueError(f"Unsupported filter: {filter_type}. Choose 'nlmeans', 'bilateral', or 'median'.")
 
-        is_success, encoded_img = cv2.imencode('.jpg', denoised_img)
+        is_success, encoded_img = cv2.imencode(file_format, denoised_img)
         if not is_success:
             raise RuntimeError("Failed to encode the denoised image.")
             
